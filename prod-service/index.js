@@ -6,22 +6,26 @@ const products = {
 	"1": {
 		"name": "LG 17인치 모니터",
 		"category": "PC 주변기기",
-		"desc": "LG 모니터 너무 좋아요."
+		"desc": "LG 모니터 너무 좋아요.",
+		"price": 123000
 	},
 	"2": {
 		"name": "LG 19인치 모니터",
 		"category": "PC 주변기기",
-		"desc": "LG 모니터 너무 좋아요."
+		"desc": "LG 모니터 너무 좋아요.",
+		"price": 160000
 	},
 	"3": {
 		"name": "맥북 프로 15인치",
 		"category": "랩탑/노트북",
-		"desc": "맥북 좋아요!"
+		"desc": "맥북 좋아요!",
+		"price": 1500000
 	},
-	"2": {
+	"4": {
 		"name": "공유기",
 		"category": "PC 주변기기",
-		"desc": "공유 잘됩니다."
+		"desc": "공유 잘됩니다.",
+		"price": 50000
 	}
 }
 

@@ -15,8 +15,8 @@ app.get('/product-detail/:prodNo', async (req, res) => {
 	if (!prod)
 			return res.status(404).send({msg: "상품이 없습니다."})
 	const coupons = await getCoupons(prodNo);
-	
-	return res.send({ prod, coupons }) 
+	const couponPrice = getCouponPrice(prod, coupons)
+	return res.send({ prod, coupons, couponPrice }) 
 })
 
 async function getProd(prodNo) {
@@ -35,6 +35,17 @@ async function getCoupons(prodNo) {
 		console.log("## ERROR \n" + e)
 		return []
 	}
+}
+
+function getCouponPrice(prod, coupons) {
+	if (!coupons || coupons.length == 0)
+		return prod.price 
+	const firstCoupon = coupons[0]
+	if (firstCoupon.type === 'RATE')
+		return parseInt(prod.price * ((100 - firstCoupon.value) / 100))
+	else if (firstCoupon.type === 'PRICE')
+		return prod.price - firstCoupon.value
+	return prod.price 
 }
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
