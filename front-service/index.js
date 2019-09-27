@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require("axios")
 const app = express()
-const port = 3000
+const port = 8080
 
 const PROFILE = process.env.PROFILE || "DEV"
 const config = require("./config")[PROFILE]

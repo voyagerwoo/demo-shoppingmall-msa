@@ -1,0 +1,35 @@
+version: "3.6"
+services:
+  app:
+    image: voyagerwoo/demo-shoppingmall-front-service:${IMG_TAG:-latest}
+    ports:
+      - "80:8080"
+    networks:
+      backend:
+      frontend:
+    deploy:
+      mode: replicated
+      replicas: ${REPLICAS:-2}
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  backend:
+    external: true
+    name: backend
+  frontend:
+    external: true
+    name: backend

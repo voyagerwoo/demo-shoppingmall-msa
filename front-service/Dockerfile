@@ -8,5 +8,5 @@ COPY . .
 
 ENV PROFILE=SWARM
 
-EXPOSE 3001
+EXPOSE 8080
 ENTRYPOINT [ "node", "index.js" ]
