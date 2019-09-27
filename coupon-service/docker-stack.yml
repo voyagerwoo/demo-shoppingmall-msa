@@ -17,7 +17,6 @@ services:
         failure_action: rollback
       resources:
         limits:
-          cpus: '2'
           memory: 1G
         reservations:
           cpus: '0.5'
