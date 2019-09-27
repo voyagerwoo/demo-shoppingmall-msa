@@ -25,6 +25,8 @@ const products = {
 	}
 }
 
+app.get('/health', (req, res) => res.send({status: "OK"}))
+
 app.get('/products/:prodNo', (req, res) => { 
 	const { prodNo } = req.params
 	const prod = products[prodNo]

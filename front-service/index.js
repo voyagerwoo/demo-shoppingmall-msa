@@ -7,6 +7,8 @@ const PROFILE = process.env.PROFILE || "DEV"
 const config = require("./config")[PROFILE]
 console.log("PROFILE:", PROFILE)
 
+app.get('/health', (req, res) => res.send({status: "OK"}))
+
 app.get('/product-detail/:prodNo', async (req, res) => { 
 	const prodNo = parseInt(req.params.prodNo)
 	const prod = await getProd(prodNo)

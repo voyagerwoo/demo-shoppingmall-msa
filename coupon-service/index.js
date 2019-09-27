@@ -16,6 +16,8 @@ const coupons = [
 	}
 ]
 
+app.get('/health', (req, res) => res.send({status: "OK"}))
+
 app.get('/products/:prodNo/coupons', (req, res) => { 
 	const prodNo = parseInt(req.params.prodNo)
 	if (!prodNo)

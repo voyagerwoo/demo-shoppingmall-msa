@@ -1,0 +1,35 @@
+version: "3.6"
+services:
+  app:
+    image: voyagerwoo/demo-shoppingmall-coupon-service:${IMG_TAG}
+    ports:
+      - "3002:3002"
+    networks:
+      discovery:
+        aliases:
+          - coupon.api
+    deploy:
+      mode: replicated
+      replicas: ${REPLICAS:-3}
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 500M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  discovery:
+    external: true
+    name: discovery
