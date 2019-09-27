@@ -2,8 +2,6 @@ version: "3.6"
 services:
   app:
     image: voyagerwoo/demo-shoppingmall-coupon-service:${IMG_TAG:-latest}
-    ports:
-      - "3002:3002"
     networks:
       backend:
         aliases:

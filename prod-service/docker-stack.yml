@@ -2,8 +2,6 @@ version: "3.6"
 services:
   app:
     image: voyagerwoo/demo-shoppingmall-prod-service:${IMG_TAG:-latest}
-    ports:
-      - "3001:3001"
     networks:
       backend:
         aliases:
