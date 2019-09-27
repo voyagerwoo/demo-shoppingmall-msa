@@ -5,7 +5,7 @@ services:
     ports:
       - "3002:3002"
     networks:
-      discovery:
+      backend:
         aliases:
           - coupon.api
     deploy:
@@ -30,6 +30,6 @@ services:
       start_period: 10s
 
 networks:
-  discovery:
+  backend:
     external: true
-    name: discovery
+    name: backend
