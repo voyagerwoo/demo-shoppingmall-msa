@@ -17,10 +17,9 @@ services:
         failure_action: rollback
       resources:
         limits:
-          memory: 1G
+          memory: 200M
         reservations:
-          cpus: '0.5'
-          memory: 500M
+          memory: 100M
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002/health"]
       interval: 10s
