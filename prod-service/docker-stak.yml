@@ -1,23 +1,22 @@
 version: "3.6"
 services:
   app:
-    image: voyagerwoo/demo-shoppingmall-prod-service:${IMG_TAG}
+    image: voyagerwoo/demo-shoppingmall-prod-service:${IMG_TAG:-latest}
     ports:
       - "3001:3001"
     networks:
-      discovery:
+      backend:
         aliases:
           - prod.api
     deploy:
       mode: replicated
-      replicas: ${REPLICAS:-3}
+      replicas: ${REPLICAS:-2}
       update_config:
         parallelism: 1
         order: start-first
         failure_action: rollback
       resources:
         limits:
-          cpus: '2'
           memory: 1G
         reservations:
           cpus: '0.5'
@@ -27,15 +26,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-      start_period: 40s
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: ${FLUENTD_ADDR}
-        fluentd-async-connect: "true"
-        tag: "app.cone-api.{{.Name}}"
+      start_period: 10s
 
 networks:
-  discovery:
+  backend:
     external: true
-    name: discovery
+    name: backend
